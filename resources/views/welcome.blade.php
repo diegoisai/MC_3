@@ -47,9 +47,9 @@
         <div class="container">
             <div class="row no-gutters d-flex align-items-center px-md-0">
                 <div class="col-lg-12 d-block">
-                    <div class="row d-flex">
+                    <div class="row d-flex justify-content-center">
                         
-                        <div class="col-md pr-4 d-flex topper align-items-center">
+                        <div class="col-md-12 pr-12 d-flex topper align-items-center">
                             <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
                                     class="icon-paper-plane"></span></div>
                             <span class="text">marketcauca2@gmail.com</span>
@@ -75,17 +75,14 @@
                             aria-haspopup="true" aria-expanded="false">Tienda</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
                             <a class="dropdown-item" href="{{url('productos')}}">Productos</a>
-                            <a class="dropdown-item" href="wishlist.html">Wishlist</a>
-                            <a class="dropdown-item" href="product-single.html">Single Product</a>
                             <a class="dropdown-item" href="{{route('cart')}}">Carrito de compras</a>
-                            <a class="dropdown-item" href="checkout.html">Checkout</a>
                         </div>
                     </li>
                     <li class="nav-item"><a href="{{ url('admin') }}" class="nav-link">Administrador</a></li>
                     <li class="nav-item dropdown nav-tabs border-success">
                         <a class="nav-link" href="#" id="dropdown05" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Mi Carrito
-                                {{-- <i class="bi bi-cart"></i><span class="badge badge-pill bg-success position-absolute top-0 start-100 translate-middle badge rounded-pill">{{ count((array) session('cart')) }}</span> --}}
+                                <i class="bi bi-cart"></i><span class="badge badge-pill bg-success position-absolute top-0 start-100 translate-middle badge rounded-pill">{{ count((array) session('cart')) }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
                                 style="width: 500px; padding: 0px; border-color: #9DA0A2">
