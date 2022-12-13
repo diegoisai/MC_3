@@ -12,13 +12,4 @@ class HomeController extends Controller
     {
         return view('admin.index');
     }
-    public function index ()
-    {
-        $products = Product::all();
-        return view('products.listarProductos')->with('products', $products);
-    }
-    public function create ()
-    {
-        return view('products.create');
-    }
 }

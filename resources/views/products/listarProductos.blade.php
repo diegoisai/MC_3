@@ -8,7 +8,8 @@
                         <h2>Todos los productos</h2>
                     </div>
                     <div class="card-body">
-                        <a href="{{ route('create-products') }}" class="btn btn-success btn-sm rounded-pill" title="Agregar un nuevo producto">
+                        <a href="{{ url('/admin/products-index/create') }}" class="btn btn-success btn-sm rounded-pill"
+                            title="Agregar un nuevo producto">
                             Agregar uno nuevo
                         </a>
                         <br>
@@ -21,21 +22,34 @@
                                         <th>Nombre</th>
                                         <th>Descripcion</th>
                                         <th>Imagen</th>
+                                        <th>Precio</th>
                                         <th>Accion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Uvas</td>
-                                        <td>Fruta fresca</td>
-                                        <td>Imagen-01</td>
-                                        <td>
-                                            <a href="" title="ver producto"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>Ver</button></a>
-                                            <a href="" title="editar producto"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar</button></a>
-                                            <a href="" title="eliminar producto"><button class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i>Borrar</button></a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($products as $pro)
+                                        <tr>
+                                            <td>{{ $pro->id }}</td>
+                                            <td>{{ $pro->product_name }}</td>
+                                            <td>{{ $pro->product_description }}</td>
+                                            <td>{{ $pro->photo }}</td>
+                                            <td>{{ $pro->price }}</td>
+                                            <td>
+                                                <a href="{{ url('/admin/products-index/' . $pro->id) }}"
+                                                    title="ver producto"><button class="btn btn-info btn-sm"><i class="bi bi-eye"></i>  Ver</button></a>
+                                                <a href="{{ url('/admin/products-index/' . $pro->id . '/edit') }}"
+                                                    title="editar producto"><button class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i>  Editar</button></a>
+                                                <form method="POST" action="{{ url('/admin/products-index' . '/' . $pro->id) }}"
+                                                    accept-charset="UTF-8" style="display:inline">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        title="borrar producto" onclick="return confirm("Confirmar eliminar
+                                                        producto")"><i class="bi bi-trash3"></i>  Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
