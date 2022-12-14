@@ -15,8 +15,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('admin.lista')->with('products', $products);
+        $products = Product::paginate(10);
+        return view('admin.lista', compact('products'));
     }
 
     /**
@@ -37,9 +37,21 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        Product::create($input);
-        return redirect('/admin/lista-productos')->with('flash_message', 'Producto AGREGADO');
+        $request->validate([
+            'product_name' => 'required' , 'product_description' => 'required' , 'photo' => 'required|image|mimes:jpeg,png,svg|max:1024'
+        ]);
+
+        $pro = $request->all();
+        if($imagen = $request->file('photo')){
+            $rutaSave = 'img/';
+            $imagenProducto = date('YmdHis'). "." . $imagen->getClientOriginalExtension();
+            $imagen->move($rutaSave, $imagenProducto);
+            $pro['photo'] = "$imagenProducto";
+        }
+
+        Product::create($pro);
+
+        return redirect('/admin/lista-productos')->with('flash_message', 'Producto agregado');
     }
 
     /**

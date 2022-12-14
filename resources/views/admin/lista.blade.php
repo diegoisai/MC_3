@@ -8,7 +8,7 @@
         Tablas
     </title>
     <!-- Favicon -->
-    <link href="{{ asset('argon.asset/img/brand/favicon.png') }}" rel="icon" type="image/png">
+    <link href="{{ asset('img/logo_png.png') }}" rel="icon" type="image/png">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <!-- Icons -->
@@ -17,11 +17,18 @@
     <!-- CSS Files -->
     <link href="{{ asset('argon.asset/css/argon-dashboard.css?v=1.1.2') }}" rel="stylesheet" />
 
+    {{-- estilos de bootstrap --}}
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script> --}}
+
+    {{-- iconos de bootstrap --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
 
 <body class="">
-    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-dark bg-dark" id="sidenav-main">
         <div class="container-fluid">
             <!-- Toggler -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
@@ -29,8 +36,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- Brand -->
-            <a class="navbar-brand pt-0" href="../index.html">
-                <img src="{{ asset('argon.asset/img/brand/blue.png') }}" class="navbar-brand-img" alt="...">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <img src="{{ asset('img/logo_png.png') }}" class="navbar-brand-img" alt="Logo" width="45%">
             </a>
             <!-- User -->
             <ul class="nav align-items-center d-md-none">
@@ -91,8 +98,8 @@
                 <div class="navbar-collapse-header d-md-none">
                     <div class="row">
                         <div class="col-6 collapse-brand">
-                            <a href="../index.html">
-                                <img src="{{ asset('argon.asset/img/brand/blue.png') }}">
+                            <a href="{{ url('/') }}">
+                                <img src="{{ asset('img/logo_png.png') }}">
                             </a>
                         </div>
                         <div class="col-6 collapse-close">
@@ -119,7 +126,7 @@
                 </form>
                 <!-- Navigation -->
                 <ul class="navbar-nav">
-                    <li class="nav-item  active ">
+                    <li class="nav-item">
                         <a class="nav-link " href="{{ url('/dashboard') }}">
                             <i class="ni ni-tv-2 text-primary"></i> Dashboard
                         </a>
@@ -139,9 +146,9 @@
                             <i class="ni ni-single-02 text-yellow"></i> User profile
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link  active " href="../examples/tables.html">
-                            <i class="ni ni-bullet-list-67 text-red"></i> Tables
+                    <li class="nav-item active">
+                        <a class="nav-link  active " href="#">
+                            <i class="ni ni-bullet-list-67 text-red"></i> Productos
                         </a>
                     </li>
                     <li class="nav-item">
@@ -181,7 +188,7 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav">
-                    <li class="nav-item active active-pro">
+                    <li class="nav-item active active-pro bg-dark nav-dark">
                         <a class="nav-link" href="../examples/upgrade.html">
                             <i class="ni ni-send text-dark"></i> Upgrade to PRO
                         </a>
@@ -190,12 +197,12 @@
             </div>
         </div>
     </nav>
-    <div class="main-content">
+    <div class="main-content bg-dark">
         <!-- Navbar -->
-        <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+        <nav class="navbar navbar-top navbar-expand-md navbar-dark bg-gradient-danger" id="navbar-main">
             <div class="container-fluid">
                 <!-- Brand -->
-                <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../index.html">Tables</a>
+                <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../index.html">Tabla Productos</a>
                 <!-- Form -->
                 <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
                     <div class="form-group mb-0">
@@ -248,7 +255,7 @@
         </nav>
         <!-- End Navbar -->
         <!-- Header -->
-        <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
             <div class="container-fluid">
                 <div class="header-body">
                 </div>
@@ -291,7 +298,9 @@
                                             <td>{{ $pro->id }}</td>
                                             <td>{{ $pro->product_name }}</td>
                                             <td>{{ $pro->product_description }}</td>
-                                            <td>{{ $pro->photo }}</td>
+                                            <td>
+                                                <img src="/img/{{$pro->photo}}" alt="{{$pro->photo}}" class="img-fluid" width="70px">
+                                            </td>
                                             <td>{{ $pro->price }}</td>
                                             <td>
                                                 <center>
@@ -299,12 +308,12 @@
                                                         title="ver producto"><button
                                                             class="btn btn-outline-info btn-sm"><i
                                                                 class="bi bi-eye"></i> Ver</button></a>&nbsp;
-                                                    <a href="{{ url('/admin/products-index/' . $pro->id . '/edit') }}"
+                                                    <a href="{{ url('/admin/lista-productos/' . $pro->id . '/edit') }}"
                                                         title="editar producto"><button
                                                             class="btn btn-outline-primary btn-sm"><i
                                                                 class="bi bi-pencil"></i> Editar</button></a>&nbsp;
                                                     <form method="POST"
-                                                        action="{{ url('/admin/products-index' . '/' . $pro->id) }}"
+                                                        action="{{ url('/admin/lista-productos' . '/' . $pro->id) }}"
                                                         accept-charset="UTF-8" style="display:inline">
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
@@ -324,7 +333,7 @@
                 </div>
             </div>
             <!-- Footer -->
-            <footer class="footer">
+            <footer class="footer bg-dark">
                 <div class="row align-items-center justify-content-xl-between">
                     <div class="col-xl-6">
                         <div class="copyright text-center text-xl-left text-muted">

@@ -32,7 +32,9 @@
                                             <td>{{ $pro->id }}</td>
                                             <td>{{ $pro->product_name }}</td>
                                             <td>{{ $pro->product_description }}</td>
-                                            <td>{{ $pro->photo }}</td>
+                                            <td>
+                                                <img src="{{$pro->photo}}" alt="{{$pro->photo}}" class="img-fluid" width="50px">
+                                            </td>
                                             <td>{{ $pro->price }}</td>
                                             <td>
                                                 <a href="{{ url('/admin/products-index/' . $pro->id) }}"
