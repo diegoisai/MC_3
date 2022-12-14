@@ -16,7 +16,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('products.listarProductos')->with('products', $products);
+        return view('admin.lista')->with('products', $products);
     }
 
     /**
@@ -39,7 +39,7 @@ class ProductsController extends Controller
     {
         $input = $request->all();
         Product::create($input);
-        return redirect('/admin/products-index')->with('flash_message', 'Producto AGREGADO');
+        return redirect('/admin/lista-productos')->with('flash_message', 'Producto AGREGADO');
     }
 
     /**
@@ -78,7 +78,7 @@ class ProductsController extends Controller
         $pro = Product::find($id);
         $input = $request->all();
         $pro->update($input);
-        return redirect('/admin/products-index')->with('flash_message', 'Producto ACTUALIZADO');
+        return redirect('/admin/lista-productos')->with('flash_message', 'Producto ACTUALIZADO');
     }
 
     /**
@@ -90,6 +90,6 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         Product::destroy($id);
-        return redirect('/admin/products-index')->with('flash_message', 'Producto ELIMINADO');
+        return redirect('/admin/lista-productos')->with('flash_message', 'Producto ELIMINADO');
     }
 }

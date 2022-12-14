@@ -45,9 +45,13 @@
                             </div>
                             <div class="custom-control custom-control-alternative custom-checkbox">
                                 <input class="custom-control-input" name="remember" id=" remember" type="checkbox">
-                                <label class="custom-control-label" for="remember">
-                                    <span class="text-muted">Recordarme</span>
-                                </label>
+                                <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="remember"
+                                    {{ old('remember') ? 'checked' : '' }}> {{ __('Recordarme') }}
+                                <span class="form-check-sign">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-info my-4">Iniciar</button>
